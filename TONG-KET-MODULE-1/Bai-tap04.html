@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý công nhân</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+<h1>Quản lý công nhân</h1>
+<table>
+  <thead>
+  <tr>
+    <th>STT</th>
+    <th>Họ và tên</th>
+    <th>Ngày sinh</th>
+    <th>Địa chỉ</th>
+    <th>Lương</th>
+    <th>Chức vụ</th>
+  </tr>
+  </thead>
+  <tbody id="workerTable">
+  </tbody>
+</table>
+
+<script>
+  const workers = [
+    { stt: 1, name: "Trương Tấn A", date: "11-11-1997", address: "Quảng Nam", salary: 2000, position: "ABC" },
+    { stt: 2, name: "Trương Tấn B", date: "11-11-1998", address: "Đà Nẵng", salary: 2000, position: "ABC" },
+    { stt: 3, name: "Trương Tấn C", date: "11-11-1999", address: "Huế", salary: 2000, position: "ABC" },
+  ];
+
+  function compareByName(a, b) {
+    const nameA = a.name.toUpperCase();
+    const nameB = b.name.toUpperCase();
+    return nameA.localeCompare(nameB);
+  }
+
+  workers.sort(compareByName);
+
+  const tableBody = document.getElementById("workerTable");
+
+  workers.forEach((worker, index) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${worker.name}</td>
+                <td>${worker.date}</td>
+                <td>${worker.address}</td>
+                <td>${worker.salary}</td>
+                <td>${worker.position}</td>
+            `;
+
+    tableBody.appendChild(row);
+  });
+</script>
+</body>
+</html>

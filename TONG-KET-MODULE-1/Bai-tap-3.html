@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính số ngày trong tháng</title>
+</head>
+<body>
+<script>
+  function tinhSoNgay() {
+    let thangNam = prompt("Nhập tháng và năm (MM/yyyy):");
+
+    let thang = parseInt(thangNam.substring(0, 2));
+    let nam = parseInt(thangNam.substring(3));
+
+    if (thang < 1 || thang > 12) {
+      alert("Tháng không hợp lệ. Vui lòng nhập tháng từ 1 đến 12");
+      return tinhSoNgay();
+    }
+
+    let soNgay;
+    switch (thang) {
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        soNgay = 31;
+        break;
+      case 4:
+      case 6:
+      case 9:
+      case 11:
+        soNgay = 30;
+        break;
+      case 2:
+        if (nam % 4 === 0 && (nam % 100 !== 0 || nam % 400 === 0)) {
+          soNgay = 29;
+        } else {
+          soNgay = 28;
+        }
+        break;
+      default:
+        alert("Tháng không hợp lệ");
+        return tinhSoNgay();
+    }
+
+    alert(`Tháng ${thang} năm ${nam} có ${soNgay} ngày`);
+  }
+
+  tinhSoNgay();
+</script>
+</body>
+</html>
